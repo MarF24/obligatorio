@@ -40,7 +40,7 @@ function setCatID(id) {
     window.location = "products.html"
 }
 
-function showCategoriesList(){
+function showProductsList(){
 
     let htmlContentToAppend = "";
     for(let i = 0; i < currentProductsArray.length; i++){
@@ -81,7 +81,7 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
     currentProductsArray = sortCategories(currentSortCriteria, currentProductsArray);
 
     //Muestro las categorías ordenadas
-    showCategoriesList();
+    showProductsList();
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(CATEGORIES_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentProductsArray = resultObj.data
-            showCategoriesList()
+            showProductsList()
             //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
         }
     });
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         minCount = undefined;
         maxCount = undefined;
 
-        showCategoriesList();
+        showProductsList();
     });
 
     document.getElementById("rangeFilterCount").addEventListener("click", function(){
@@ -138,6 +138,6 @@ document.addEventListener("DOMContentLoaded", function(e){
             maxCount = undefined;
         }
 
-        showCategoriesList();
+        showProductsList();
     });
 });
