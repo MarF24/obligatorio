@@ -43,11 +43,6 @@ function setCatID(id) {
     window.location = "products.html"
 }
 
-function setCatName(name) {
-    localStorage.setItem("catName", name);
-    console.log(setCatName)
-    
-}
 
 
 
@@ -105,10 +100,21 @@ document.addEventListener("DOMContentLoaded", function(e){
             currentProductsArray = resultObj.data.products
             showProductsList()
             //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
-            
+            setTitleProduct(resultObj.data.catName)
         }
+        
     });
 
 
+
+ 
     
 });
+
+
+function setTitleProduct (name){
+    let TituloP = document.getElementById("tituloProd")
+    TituloP.innerHTML += " " + name ;
+
+
+}
