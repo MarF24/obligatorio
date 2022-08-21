@@ -18,19 +18,21 @@
 
 <body>
   <main>
-      <img src="img/login.png">
-      <h1>Inicio de sesión</h1>
-      <form id="form" action="/" method="GET">
-        <div>
+    <div class="center-content login-form">
+      <img style="width: 20rem;" src="img/login.png">
+      <form id="form" action="/" method="GET" class="center-content">
+        <h1>Inicio de sesión</h1>
+        <div class="form-grup">
           <label for="name">Email</label><br>
-          <input type="email" name="name" id="name" required>
+          <input type="email" name="name" id="name" required class="form-control" placeholder="Email">
         </div>
-        <div>
+        <div class="form-grup">
           <label for="password">Contraseña</label><br>
-          <input type="password" id="password" name="password" required>
+          <input type="password" id="password" name="password" required class="form-control" placeholder="Contraseña">
         </div>
-        <button type="submit">Ingresar</button>
+        <button type="submit" class="btn btn-primary">Ingresar</button>
       </form>
+    </div>
   </main>
   <footer class="text-muted">
     <div class="container">

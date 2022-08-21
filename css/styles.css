@@ -189,10 +189,13 @@ a.custom-card:hover {
   color: orange;
 }
 
-.cont1{
- width: 100%;
- max-width: 330px;
- padding: 15px;
- margin: auto;
-  
+.center-content {
+  display: grid;
+  place-items: center;
+  grid-gap: 1rem;
+}
+
+.login-form {
+  margin-top: 5rem;
+  grid-gap: 1.5rem;
 }
