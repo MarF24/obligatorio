@@ -1,14 +1,10 @@
-document.addEventListener("DOMContentLoaded", function(){
-    document.getElementById("autos").addEventListener("click", function() {
-        localStorage.setItem("catID", 101);
-        window.location = "products.html"
-    });
-    document.getElementById("juguetes").addEventListener("click", function() {
-        localStorage.setItem("catID", 102);
-        window.location = "products.html"
-    });
-    document.getElementById("muebles").addEventListener("click", function() {
-        localStorage.setItem("catID", 103);
-        window.location = "products.html"
-    });
-});
+const name = document.getElementById("name")
+const password = document.getElementById("password")
+const form = document.getElementById("form")
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault()
+    window.location.href = "index1.html"
+})
+
+
