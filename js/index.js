@@ -7,4 +7,6 @@ form.addEventListener("submit", (e) => {
     window.location.href = "index1.html"
 })
 
-
+function onSignIn (googleData){
+    window.location.href = "index1.html"
+}
