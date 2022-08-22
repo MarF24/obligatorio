@@ -12,3 +12,6 @@ function onSignIn (googleData){
     console.log("TestGoogle")
 }
 
+function hi(){
+    console.log("Hola!")
+}
