@@ -12,3 +12,18 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 });
+
+document.addEventListener("DOMContentLoaded", function(e){
+    // localStorage.getItem("nameEmail")
+    emailTest.innerHTML = localStorage.getItem("nameEmail")
+
+    console.log(localStorage.getItem("nameEmail"))
+})
+
+let emailTest = document.getElementById("nickName") 
+
+// document.addEventListener("DOMContentLoaded", function(){
+//     emailTest.innerHTML = localStorage.getItem("emailNick1")
+    
+// })
+

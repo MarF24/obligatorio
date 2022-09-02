@@ -97,6 +97,9 @@ document.addEventListener("DOMContentLoaded", function(e){
             showProductsList()
             //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
             setTitleProduct(resultObj.data.catName)
+            
+            
+            
         }
         
     });
@@ -108,9 +111,78 @@ document.addEventListener("DOMContentLoaded", function(e){
 });
 
 
+
+
 function setTitleProduct (name){
     let TituloP = document.getElementById("tituloProd")
     TituloP.innerHTML += " " + name ;
 
 
 }
+
+
+
+// -------------------Botones para filtrar------------------------
+
+let btnAsc = document.getElementById("asc");
+let btnDesc = document.getElementById("desc");
+let btnRelevancia = document.getElementById("relevancia");
+
+
+btnAsc.addEventListener("click", function(e){
+    currentProductsArray.sort((a, b) => {
+        if (a.cost > b.cost) {
+            return -1;
+        } else if (a.cost < b.cost) {
+            return 1;
+        } else {
+            return 0;
+        }
+
+        })
+
+        showProductsList()
+        
+    });
+
+btnDesc.addEventListener("click", function(e){
+    currentProductsArray.sort((a, b) => {
+        if (a.cost < b.cost) {
+            return -1;
+        } else if (a.cost > b.cost) {
+            return 1;
+        } else {
+            return 0;
+        }
+
+        })
+
+        showProductsList()
+        
+    });
+
+btnRelevancia.addEventListener("click", function(e){
+    currentProductsArray.sort((a, b) => {
+        if (a.soldCount > b.soldCount) {
+            return -1;
+        } else if (a.soldCount < b.soldCount) {
+            return 1;
+        } else {
+            return 0;
+        }
+
+        })
+
+        showProductsList()
+    
+    });
+
+
+
+
+
+
+
+
+
+
