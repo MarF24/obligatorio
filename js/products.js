@@ -46,8 +46,8 @@ function sortCategories(criteria, array){
 function showProductsList(){
 
     let htmlContentToAppend = "";
-    for(let i = 0; i < currentProductsArray.length; i++){
-        let product = currentProductsArray[i];
+    for(let i = 0; i < currentProductsArrayFilter.length; i++){
+        let product = currentProductsArrayFilter[i];
 
         
 
@@ -93,8 +93,11 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE).then(function(resultObj){
         if (resultObj.status === "ok"){
+            
             currentProductsArray = resultObj.data.products
+            currentProductsArrayFilter = currentProductsArray
             showProductsList()
+
             //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
             setTitleProduct(resultObj.data.catName)
             
@@ -177,6 +180,58 @@ btnRelevancia.addEventListener("click", function(e){
     
     });
 
+
+
+let precioMinimo = document.getElementById("precioMin")
+let precioMaximo = document.getElementById("precioMax")
+
+let currentProductsArrayFilter = currentProductsArray
+
+
+precioMinimo.addEventListener("input", function(e) {
+    definirMaxMin()
+    
+});
+
+precioMaximo.addEventListener("input", function(e) {
+    definirMaxMin()
+});
+
+
+function definirMaxMin() {
+        
+        let Min;
+        let Max;
+    
+        if (precioMinimo.value == "" || precioMinimo.value == undefined) {
+            Min = -Infinity
+            
+        } else {
+            Min = precioMinimo.value
+            
+        };
+    
+        if (precioMaximo.value == "" || precioMaximo.value == undefined) {
+            Max = +Infinity
+            
+        } else {
+            Max = precioMaximo.value
+            
+        };
+        console.log(Min, Max)
+    
+        function CostoFiltrado(producto) {
+          return  producto.cost >= Min && producto.cost <= Max
+        };
+    
+        currentProductsArrayFilter =currentProductsArray.filter(CostoFiltrado) 
+
+
+        console.log(currentProductsArrayFilter)
+        
+        showProductsList()
+    
+}
 
 
 
