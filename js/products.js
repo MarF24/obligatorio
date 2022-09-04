@@ -46,6 +46,7 @@ function sortCategories(criteria, array){
 function showProductsList(){
 
     let htmlContentToAppend = "";
+    document.getElementById("product-list-container").innerHTML = htmlContentToAppend
     for(let i = 0; i < currentProductsArrayFilter.length; i++){
         let product = currentProductsArrayFilter[i];
 
@@ -133,7 +134,7 @@ let btnRelevancia = document.getElementById("relevancia");
 
 
 btnAsc.addEventListener("click", function(e){
-    currentProductsArray.sort((a, b) => {
+    currentProductsArrayFilter.sort((a, b) => {
         if (a.cost > b.cost) {
             return -1;
         } else if (a.cost < b.cost) {
@@ -149,7 +150,7 @@ btnAsc.addEventListener("click", function(e){
     });
 
 btnDesc.addEventListener("click", function(e){
-    currentProductsArray.sort((a, b) => {
+    currentProductsArrayFilter.sort((a, b) => {
         if (a.cost < b.cost) {
             return -1;
         } else if (a.cost > b.cost) {
@@ -165,7 +166,7 @@ btnDesc.addEventListener("click", function(e){
     });
 
 btnRelevancia.addEventListener("click", function(e){
-    currentProductsArray.sort((a, b) => {
+    currentProductsArrayFilter.sort((a, b) => {
         if (a.soldCount > b.soldCount) {
             return -1;
         } else if (a.soldCount < b.soldCount) {
@@ -218,7 +219,7 @@ function definirMaxMin() {
             Max = precioMaximo.value
             
         };
-        console.log(Min, Max)
+        
     
         function CostoFiltrado(producto) {
           return  producto.cost >= Min && producto.cost <= Max
@@ -233,6 +234,14 @@ function definirMaxMin() {
     
 }
 
+document.addEventListener("DOMContentLoaded", function(e){
+    // localStorage.getItem("nameEmail")
+    emailTest.innerHTML = localStorage.getItem("nameEmail")
+
+    // console.log(localStorage.getItem("nameEmail"))
+})
+
+let emailTest = document.getElementById("nickName")
 
 
 
