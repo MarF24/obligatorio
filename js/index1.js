@@ -13,11 +13,15 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
+
+
+console.log(catID)
+
 document.addEventListener("DOMContentLoaded", function(e){
     // localStorage.getItem("nameEmail")
     emailTest.innerHTML = localStorage.getItem("nameEmail")
 
-    console.log(localStorage.getItem("nameEmail"))
+    // console.log(localStorage.getItem("nameEmail"))
 })
 
 let emailTest = document.getElementById("nickName") 

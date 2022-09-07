@@ -39,6 +39,10 @@ function sortCategories(criteria, array){
 }
 
 
+function productClick(id) {
+  localStorage.setItem("idProductInfo", id)
+  window.location.href = "product-info.html"
+}
 
 
 
@@ -49,11 +53,12 @@ function showProductsList(){
     document.getElementById("product-list-container").innerHTML = htmlContentToAppend
     for(let i = 0; i < currentProductsArrayFilter.length; i++){
         let product = currentProductsArrayFilter[i];
+        // console.log(product)
 
         
 
             htmlContentToAppend += `
-            <div class="list-group-item list-group-item-action cursor-active">
+            <div class="list-group-item list-group-item-action cursor-active" onClick={productClick(${product.id})}>
                 <div class="row">
                     <div class="col-3">
                         <img src="${product.image}" alt="${product.description}" class="img-thumbnail">
@@ -71,8 +76,17 @@ function showProductsList(){
         
 
         document.getElementById("product-list-container").innerHTML = htmlContentToAppend;
+        
+        
+       
+
     }
+
 }
+
+
+
+
 
 function sortAndShowCategories(sortCriteria, categoriesArray){
     currentSortCriteria = sortCriteria;
@@ -242,6 +256,10 @@ document.addEventListener("DOMContentLoaded", function(e){
 })
 
 let emailTest = document.getElementById("nickName")
+
+
+
+
 
 
 
