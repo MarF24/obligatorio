@@ -56,7 +56,7 @@ function showProductsList(){
             <div class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
-                        <img src="${product.image}" alt="${product.description}" class="img-thumbnail">
+                        <img src="${product.image}" alt="${product.description}" class="img-thumbnail" onClick={productClick(${product.id})}>
                     </div>
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
@@ -242,6 +242,13 @@ document.addEventListener("DOMContentLoaded", function(e){
 })
 
 let emailTest = document.getElementById("nickName")
+
+
+
+function productClick(id) {
+    localStorage.setItem("idProductInfo", id)
+    window.location.href = "product-info.html"
+  };
 
 
 
