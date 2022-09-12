@@ -23,6 +23,12 @@ let emailvalue = document.getElementById("name").value
 
 
 
+console.log(nameEmail)
+
+
+
+
+
 
 // function onSignIn (googleData){
 //     window.location.href = "index1.html"
