@@ -144,11 +144,13 @@ function showCommentsList (){
             
             htmlComments += 
             `<div class="list-group-item">
-                <b>${element.user}</b> 
-                <p>- ${element.dateTime} - 
-                <div id="startsPlace">${setStarts(element.score)}<div> </p>
+                <div class="d-flex flex-row">
+                    <b>${element.user}</b> 
+                    <p class="mx-1">- ${element.dateTime} -</p> 
+                    <div id="startsPlace">${setStarts(element.score)}</div>
+                </div>
                 <p>${element.description}</p>
-             </div>` ;
+            </div>`;
 
             //  console.log(element.score)
 
@@ -157,7 +159,7 @@ function showCommentsList (){
         
         
         }
-        document.getElementById("comments").innerHTML += htmlComments
+        document.getElementById("comments").innerHTML = htmlComments
 
         
 };
@@ -168,11 +170,19 @@ let stars = document.getElementById("starts") ;
 let btnSend = document.getElementById("btnSend");
 let newComments = [] ;
 
-// btnSend.addEventListener("click", function(e){
-//     console.log(inputText.value)
-//     commentTest =
+
+btnSend.addEventListener("click", function(e){
+    console.log(inputText.value)
+    let commentTest = {
+        user : localStorage.getItem("nameEmail"), 
+        dateTime: (new Date()).toDateString(),
+        score: stars.value ,
+        description : inputText.value
+    }
+    CommentsProduct.push(commentTest)
+    showCommentsList()
     
-// });
+});
 
 
 
@@ -218,8 +228,3 @@ function setStarts(n){
     }
     
 };
-
-
-
-
-
