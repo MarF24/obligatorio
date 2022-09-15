@@ -146,9 +146,11 @@ function showCommentsList (){
             `<div class="list-group-item">
                 <b>${element.user}</b> 
                 <p>- ${element.dateTime} - 
-                <div id="startsPlace">${text.repeat(element.score)}<div> </p>
+                <div id="startsPlace">${setStarts(element.score)}<div> </p>
                 <p>${element.description}</p>
              </div>` ;
+
+            //  console.log(element.score)
 
             
         
@@ -156,10 +158,68 @@ function showCommentsList (){
         
         }
         document.getElementById("comments").innerHTML += htmlComments
-        console.log(htmlComments) 
+
+        
+};
+
+
+let inputText = document.getElementById("inputText") ;
+let stars = document.getElementById("starts") ;
+let btnSend = document.getElementById("btnSend");
+let newComments = [] ;
+
+// btnSend.addEventListener("click", function(e){
+//     console.log(inputText.value)
+//     commentTest =
     
-        
-        
+// });
 
 
-;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function setStarts(n){
+
+    let text1 = `<span class="fa fa-star checked"></span>`;
+    let starBlack = `<span class="fa fa-star"></span>`;
+    // let result = text.repeat(element[0].score);
+    if (n == 5 ) {
+        return text1.repeat(n);
+        
+        
+    } else {
+        return text1.repeat(n) +  starBlack.repeat(5-n); 
+        
+    }
+    
+};
+
+
+
+
+
