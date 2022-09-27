@@ -266,7 +266,16 @@ function showProductsList2(){
 function productClick(id) {
     localStorage.setItem("idProductInfo", id)
     window.location.href = "product-info.html"
-  }
+  };
+
+  let emailTest = document.getElementById("nickName") 
+let logoutbtn = document.getElementById("logout")
+document.addEventListener("DOMContentLoaded", function(e){
+    emailTest.innerHTML = localStorage.getItem("nameEmail")
+});
+logoutbtn.addEventListener("click", function(e){
+    localStorage.removeItem("nameEmail")
+});
 
 
 

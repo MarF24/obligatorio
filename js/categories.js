@@ -142,11 +142,11 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 });
 
+let emailTest = document.getElementById("nickName") 
+let logoutbtn = document.getElementById("logout")
 document.addEventListener("DOMContentLoaded", function(e){
-    // localStorage.getItem("nameEmail")
     emailTest.innerHTML = localStorage.getItem("nameEmail")
-
-    // console.log(localStorage.getItem("nameEmail"))
-})
-
-let emailTest = document.getElementById("nickName")
+});
+logoutbtn.addEventListener("click", function(e){
+    localStorage.removeItem("nameEmail")
+});
