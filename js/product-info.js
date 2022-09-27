@@ -9,6 +9,7 @@ let maxCount = undefined;
 
 
 
+
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCT_INFO_URL + localStorage.getItem("idProductInfo") + EXT_TYPE).then(function(resultObj){
         // console.log(resultObj)
@@ -184,35 +185,6 @@ btnSend.addEventListener("click", function(e){
     
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function setStarts(n){
 
     let text1 = `<span class="fa fa-star checked"></span>`;
@@ -228,3 +200,74 @@ function setStarts(n){
     }
     
 };
+
+
+///////////////// /////////////////////////////
+//////////////////////////////////////////////
+let currentProductsArray2 = [];
+document.addEventListener("DOMContentLoaded", function(e){
+    getJSONData(PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE).then(function(resultObj){
+        if (resultObj.status === "ok"){
+            
+            currentProductsArray2 = resultObj.data.products
+            console.log(currentProductsArray2)
+            showProductsList2()
+            
+            // showProductsList()
+
+            //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
+            // setTitleProduct(resultObj.data.catName)
+            
+            
+            
+        }
+        
+    });
+
+
+
+ 
+    
+});
+
+
+
+function showProductsList2(){
+
+    let htmlContentToAppend2 = "";
+    document.getElementById("sameProducts").innerHTML = htmlContentToAppend2
+    for(let i = 0; i < currentProductsArray2.length; i++){
+        let productSame = currentProductsArray2[i];
+        
+
+        
+
+            htmlContentToAppend2 += `
+            <div class="cursor-active" onClick={productClick(${productSame.id})}>
+                <div >
+                    <div>
+                        <img src="${productSame.image}" class="img-thumbnail" onClick={productClick(${productSame.id})}>
+                    </div>
+                    
+                </div>
+            </div>
+            `
+        
+
+        document.getElementById("sameProducts").innerHTML = htmlContentToAppend2;
+        
+        
+        
+       
+
+    }
+
+}
+function productClick(id) {
+    localStorage.setItem("idProductInfo", id)
+    window.location.href = "product-info.html"
+  }
+
+
+
+

@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 
-console.log(catID)
+
 
 document.addEventListener("DOMContentLoaded", function(e){
     // localStorage.getItem("nameEmail")

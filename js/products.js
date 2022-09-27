@@ -262,7 +262,8 @@ let emailTest = document.getElementById("nickName")
 function productClick(id) {
     localStorage.setItem("idProductInfo", id)
     window.location.href = "product-info.html"
-  };
+};
+
 
 
 
