@@ -110,6 +110,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             CommentsProduct = resultObj.data
             console.log(CommentsProduct)
             showCommentsList()
+            showProductsList2()
                         
         
         
@@ -204,75 +205,102 @@ function setStarts(n){
 
 ///////////////// /////////////////////////////
 //////////////////////////////////////////////
-let currentProductsArray2 = [];
-document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE).then(function(resultObj){
-        if (resultObj.status === "ok"){
+// let currentProductsArray2 = [];
+// document.addEventListener("DOMContentLoaded", function(e){
+//     getJSONData(PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE).then(function(resultObj){
+//         if (resultObj.status === "ok"){
             
-            currentProductsArray2 = resultObj.data.products
-            console.log(currentProductsArray2)
-            showProductsList2()
+//             currentProductsArray2 = resultObj.data.products
+//             console.log(currentProductsArray2)
+//             showProductsList2()
             
-            // showProductsList()
+//             showProductsList()
 
-            //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
-            // setTitleProduct(resultObj.data.catName)
+//             sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
+//             setTitleProduct(resultObj.data.catName)
             
             
             
-        }
+//         }
         
-    });
+//     });
 
 
 
  
     
-});
+// });
 
 
 
-function showProductsList2(){
+// function showProductsList2(){
 
-    let htmlContentToAppend2 = "";
-    document.getElementById("sameProducts").innerHTML = htmlContentToAppend2
-    for(let i = 0; i < currentProductsArray2.length; i++){
-        let productSame = currentProductsArray2[i];
+//     let htmlContentToAppend2 = "";
+//     document.getElementById("sameProducts").innerHTML = htmlContentToAppend2
+//     for(let i = 0; i < currentProductsArray.relatedProducts.length; i++){
+//         let productSame = currentProductsArray.relatedProducts[i];
         
 
         
 
-            htmlContentToAppend2 += `
-            <div class="cursor-active" onClick={productClick(${productSame.id})}>
-                <div >
-                    <div>
-                        <img src="${productSame.image}" class="img-thumbnail" onClick={productClick(${productSame.id})}>
-                    </div>
+//             htmlContentToAppend2 += `
+//             <div class="cursor-active product-info login-form" onClick={productClick(${productSame.id})}>
+//                 <div >
+//                     <div>
+//                         <img src="${productSame.image}" class="img-thumbnail" onClick={productClick(${productSame.id})}>
+//                     </div>
                     
-                </div>
-            </div>
-            `
+//                 </div>
+//             </div>
+//             `
         
 
-        document.getElementById("sameProducts").innerHTML = htmlContentToAppend2;
+//         document.getElementById("sameProducts").innerHTML = htmlContentToAppend2;
         
         
         
        
 
-    }
+//     }
 
-}
+// };
+
+function showProductsList2(){
+
+    let htmlContentToAppend2 = "";
+    document.getElementById("sameProducts").innerHTML = htmlContentToAppend2
+    console.log(currentProductsArray.relatedProducts)
+    for(let i = 0; i < currentProductsArray.relatedProducts.length; i++){
+        let productSame = currentProductsArray.relatedProducts[i];
+            
+            if (i==0) { htmlContentToAppend2 += 
+                `<div class="carousel-item active">
+                    <img src="${productSame.image}" class="d-block w-100"  onClick={productClick(${productSame.id})}>
+                </div>`
+                
+            } else { htmlContentToAppend2 +=
+                `<div class="carousel-item">
+                    <img src="${productSame.image}" class="d-block w-100" onClick={productClick(${productSame.id})}>
+                </div>`
+                
+            }
+        document.getElementById("sameProducts").innerHTML = htmlContentToAppend2;
+    }
+    console.log(document.getElementById("carouselExampleControls"))
+};
+
 function productClick(id) {
     localStorage.setItem("idProductInfo", id)
     window.location.href = "product-info.html"
   };
 
-  let emailTest = document.getElementById("nickName") 
+let emailTest = document.getElementById("nickName") 
 let logoutbtn = document.getElementById("logout")
+
 document.addEventListener("DOMContentLoaded", function(e){
     emailTest.innerHTML = localStorage.getItem("nameEmail")
 });
+
 logoutbtn.addEventListener("click", function(e){
     localStorage.removeItem("nameEmail")
 });
