@@ -2,7 +2,6 @@ const ORDER_ASC_BY_NAME = "AZ";
 const ORDER_DESC_BY_NAME = "ZA";
 const ORDER_BY_PROD_COUNT = "Cant.";
 let currentProductsArray = [];
-
 let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
@@ -16,46 +15,24 @@ document.addEventListener("DOMContentLoaded", function(e){
         if (resultObj.status === "ok"){
             
             currentProductsArray = resultObj.data
-            
-            
-            
             showProductsList()
             console.log(currentProductsArray)
-
-
             //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
-            // setTitleProduct(resultObj.data.catName)
-        
-            
-        
-            
-            
-            
+            // setTitleProduct(resultObj.data.catName)   
         }
-
     });
-
-
-
- 
-
 });
 
 
 function showProductsList(){
 
-    // let imagesToAppend = "" ;
-    // let ImagesOfProducts = currentProductsArray.images ;
-    // for (let i = 0; i < ImagesOfProducts.length; i++) {
-    //     let ImagesP = ImagesOfProducts[i];
-        
-    //     imagesToAppend += "<img src=" + ImagesP + ">" ;
-        
-    // }
-   
-        
-        
-    // }
+// let imagesToAppend = "" ;
+// let ImagesOfProducts = currentProductsArray.images ;
+// for (let i = 0; i < ImagesOfProducts.length; i++) {
+//     let ImagesP = ImagesOfProducts[i];
+//     imagesToAppend += "<img src=" + ImagesP + ">" ; 
+// }
+// }
 
     let htmlContentToAppend = "";
     
@@ -88,16 +65,10 @@ function showProductsList(){
             </div>
             <br></br>
             `
-            
-
-            
-        
 
         document.getElementById("container1").innerHTML += htmlContentToAppend;
         
-    
-    console.log()
-}
+};
 
 
 let CommentsProduct = []
@@ -110,17 +81,9 @@ document.addEventListener("DOMContentLoaded", function(e){
             CommentsProduct = resultObj.data
             console.log(CommentsProduct)
             showCommentsList()
-            showProductsList2()
-                        
-        
-        
-            
-        
-            
-            
-            
+            showProductsList2()            
         }
-
+  
     });
 
 });
@@ -131,15 +94,8 @@ function showCommentsList (){
     let htmlComments = " " ;
 
         let element = CommentsProduct ;
-
-        
-            let text = `<span class="fa fa-star checked"></span>` ;
-            
-            let result = text.repeat(element[0].score);
-
-            
-
-            
+        let text = `<span class="fa fa-star checked"></span>` ;
+        let result = text.repeat(element[0].score);
 
         for (let i = 0; i < CommentsProduct.length; i++) {
             const element = CommentsProduct[i];
@@ -153,13 +109,6 @@ function showCommentsList (){
                 </div>
                 <p>${element.description}</p>
             </div>`;
-
-            //  console.log(element.score)
-
-            
-        
-        
-        
         }
         document.getElementById("comments").innerHTML = htmlComments
 
@@ -208,30 +157,16 @@ function setStarts(n){
 // let currentProductsArray2 = [];
 // document.addEventListener("DOMContentLoaded", function(e){
 //     getJSONData(PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE).then(function(resultObj){
-//         if (resultObj.status === "ok"){
-            
+//         if (resultObj.status === "ok"){          
 //             currentProductsArray2 = resultObj.data.products
 //             console.log(currentProductsArray2)
-//             showProductsList2()
-            
+//             showProductsList2()   
 //             showProductsList()
-
 //             sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
 //             setTitleProduct(resultObj.data.catName)
-            
-            
-            
 //         }
-        
 //     });
-
-
-
- 
-    
 // });
-
-
 
 // function showProductsList2(){
 
@@ -239,30 +174,17 @@ function setStarts(n){
 //     document.getElementById("sameProducts").innerHTML = htmlContentToAppend2
 //     for(let i = 0; i < currentProductsArray.relatedProducts.length; i++){
 //         let productSame = currentProductsArray.relatedProducts[i];
-        
-
-        
-
 //             htmlContentToAppend2 += `
 //             <div class="cursor-active product-info login-form" onClick={productClick(${productSame.id})}>
 //                 <div >
 //                     <div>
 //                         <img src="${productSame.image}" class="img-thumbnail" onClick={productClick(${productSame.id})}>
-//                     </div>
-                    
+//                     </div>                   
 //                 </div>
 //             </div>
 //             `
-        
-
 //         document.getElementById("sameProducts").innerHTML = htmlContentToAppend2;
-        
-        
-        
-       
-
 //     }
-
 // };
 
 function showProductsList2(){
