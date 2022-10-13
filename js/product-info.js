@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             currentProductsArray = resultObj.data
             showProductsList()
             console.log(currentProductsArray)
+            localStorage.setItem("Obj", JSON.stringify(currentProductsArray))
             //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
             // setTitleProduct(resultObj.data.catName)   
         }
@@ -46,6 +47,9 @@ function showProductsList(){
             <div class="product-info login-form">
                 <div>
                     <h1> ${product.name} </h1>
+                    <div>
+                        <input type="button" value="Comprar" id="btnComprar">
+                    </div>
                 </br>
                 </div>
                 <div>
@@ -228,5 +232,11 @@ logoutbtn.addEventListener("click", function(e){
 });
 
 
+let btnComprar = document.getElementById("btnComprar")
+
+console.log(btnComprar)
+// btnComprar.addEventListener("click", function(e){
+//     console.log("asd")
+// })
 
 
