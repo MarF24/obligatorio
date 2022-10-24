@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function(e){
         if (resultObj.status === "ok"){
             
             arrayBuy = resultObj.data.articles
-            console.log(arrayBuy)
             pushItems()
             showProductsCart()  
         }
@@ -78,4 +77,5 @@ function fruta(n,e){
 function pushItems(){
     arrayBuy.push(JSON.parse(localStorage.getItem("Obj")))   
 }
+
 
