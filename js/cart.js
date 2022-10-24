@@ -1,24 +1,8 @@
-let arrayBuy = []
+// let arrayBuy = []
 let tableProducts = document.getElementById("tableProducts")
 let extra = document.getElementById("extra")
-
-// document.addEventListener("DOMContentLoaded", function(e){
-//     getJSONData(CART_BUY_URL).then(function(resultObj){
-//         if (resultObj.status === "ok"){
-            
-//             console.log(resultObj.data)
-            
-            
-            
-//         }
-        
-//     });
-
-
-
- 
-    
-// });
+let USD = "USD"
+let UYU = "UYU"
 
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(CART_INFO_URL + 25801 + EXT_TYPE).then(function(resultObj){
@@ -27,21 +11,11 @@ document.addEventListener("DOMContentLoaded", function(e){
             arrayBuy = resultObj.data.articles
             console.log(arrayBuy)
             pushItems()
-            showProductsCart()
-            
-            
-            
-            
+            showProductsCart()  
         }
         
-    });
-
-
-
- 
-    
+    });  
 });
-
 
 function showProductsCart() {
     
@@ -88,14 +62,7 @@ function showProductsCart() {
             </table>
             <br>`
     tableProducts.innerHTML += html1
-
-    
-   
-
 }
-
-let USD = "USD"
-let UYU = "UYU"
 
 function fruta(n,e){
     
@@ -108,12 +75,7 @@ function fruta(n,e){
 
 }
 
-
-
-console.log(JSON.parse(localStorage.getItem("Obj")))
-
 function pushItems(){
-    arrayBuy.push(JSON.parse(localStorage.getItem("Obj")))
-    arrayBuy.push(JSON.parse(localStorage.getItem("Obj")))
+    arrayBuy.push(JSON.parse(localStorage.getItem("Obj")))   
 }
 
