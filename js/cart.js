@@ -49,7 +49,6 @@ function showProductsCart() {
     for (let i = 0; i < arrayBuy.length; i++) {
         let product = arrayBuy[i];
         
-        
             if (i==0) {
                 html1 +=
                 `<h2 class="alert-heading">Carrito de compras</h2>
@@ -66,7 +65,7 @@ function showProductsCart() {
                     <td><img src="${product.image}" width="50" height="50"></td>
                     <td>${product.name}</td>
                     <td>${product.currency +" "+ product.unitCost}</td>
-                    <td><input type="number" id="${product.unitCost + 1}" value="${product.count}" min="1" max="10" onclick="fruta(${product.unitCost})"></td>
+                    <td><input type="number" id="${product.unitCost + 1}" value="${product.count}" min="1" max="10" onclick="fruta(${product.unitCost},${product.currency})"></td>
                     <td id="${product.unitCost}"">${product.currency + " " + product.unitCost}</td>
                     </tr>
                     `
@@ -78,8 +77,8 @@ function showProductsCart() {
                <td><img src="${product.images[2]}" width="50" height="50"></td>
                <td>${product.name}</td>
                <td>${product.currency +" "+ product.cost}</td>
-               <td><input type="number" id="${product.cost + 1}" value="1" min="1" max="10" onclick="fruta(${product.cost})"></td>
-               <td id="${product.cost}"">${product.cost}</td><br>
+               <td><input type="number" id="${product.cost + 1}" value="1" min="1" max="10" onclick="fruta(${product.cost}, ${product.currency})"></td>
+               <td id="${product.cost}""> ${product.currency} ${product.cost}</td><br>
                </tr>
                 `
                 
@@ -89,20 +88,32 @@ function showProductsCart() {
             </table>
             <br>`
     tableProducts.innerHTML += html1
+
+    
    
 
 }
-function fruta(n){
+
+let USD = "USD"
+let UYU = "UYU"
+
+function fruta(n,e){
     
     let costF = document.getElementById(n)
-    let costI = document.getElementById(n + 1).value 
-    costF.innerHTML = costI * n
+    let costI = document.getElementById(n + 1).value
+    console.log(n)    
+    costF.innerHTML = e  + " " + costI * n
+
+    
 
 }
+
+
 
 console.log(JSON.parse(localStorage.getItem("Obj")))
 
 function pushItems(){
+    arrayBuy.push(JSON.parse(localStorage.getItem("Obj")))
     arrayBuy.push(JSON.parse(localStorage.getItem("Obj")))
 }
 
