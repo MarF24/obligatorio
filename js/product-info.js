@@ -231,20 +231,29 @@ logoutbtn.addEventListener("click", function(e){
     localStorage.removeItem("nameEmail")
 });
 
-
 function setBtnBuy(){
     let btnComprar = document.getElementById("btnComprar")
     btnComprar.addEventListener("click", function(e){
         
-        let itemsCarrito = []
-        itemsCarrito = currentProductsArray
-        localStorage.setItem("Obj", JSON.stringify(currentProductsArray))
+        // let itemsCarrito = []
+        // itemsCarrito = currentProductsArray
+        // localStorage.setItem("Obj", JSON.stringify(currentProductsArray))
+
+        pushToLocalCart(currentProductsArray)
+
         window.location.href = "cart.html"
     })
 
 }
 
+function pushToLocalCart(item) {
+    const cartJson = localStorage.getItem("cart_key")
+    let cart = []
+    if (cartJson) cart = JSON.parse(cartJson) 
 
+    cart.push(item)
 
+    localStorage.setItem("cart_key", JSON.stringify(cart))
+}
 
 

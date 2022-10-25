@@ -1,30 +1,36 @@
 // let arrayBuy = []
-let tableProducts = document.getElementById("tableProducts")
-let extra = document.getElementById("extra")
-let USD = "USD"
-let UYU = "UYU"
+let tableProducts = document.getElementById("tableProducts");
+let extra = document.getElementById("extra");
+let USD = "USD";
+let UYU = "UYU";
 
-document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(CART_INFO_URL + 25801 + EXT_TYPE).then(function(resultObj){
-        if (resultObj.status === "ok"){
-            
-            arrayBuy = resultObj.data.articles
-            pushItems()
-            showProductsCart()  
+document.addEventListener("DOMContentLoaded", function (e) {
+    getJSONData(CART_INFO_URL + 25801 + EXT_TYPE).then(function (resultObj) {
+        if (resultObj.status === "ok") {
+            arrayBuy = resultObj.data.articles;
+            for (const item of getCartItems()) arrayBuy.push(item);
+            console.log(arrayBuy)
+
+
+            showProductsCart();
+            console.log(window.localStorage)
         }
-        
-    });  
+    });
 });
 
+//#region Cart
+
+function getCartItems() {
+    const cartJson = localStorage.getItem("cart_key");
+    if (!cartJson) return [];
+    return JSON.parse(cartJson);
+}
+
+//#endregion
+
 function showProductsCart() {
-    
-    let html1 = ``
-    for (let i = 0; i < arrayBuy.length; i++) {
-        let product = arrayBuy[i];
-        
-            if (i==0) {
-                html1 +=
-                `<h2 class="alert-heading">Carrito de compras</h2>
+    let html1 = `
+<h2 class="alert-heading">Carrito de compras</h2>
                     <table style="width:100%">
                     <tr>
                     <th></th>
@@ -34,48 +40,41 @@ function showProductsCart() {
                     <th>Subtotal</th>
                     
                     </tr>
-                    <tr>
-                    <td><img src="${product.image}" width="50" height="50"></td>
+
+    `;
+    for (let i = 0; i < arrayBuy.length; i++) {
+        let product = arrayBuy[i];
+
+        const image = product.image ?? product.images[0];
+        const cost = product.unitCost ?? product.cost;
+        const count = product.count ?? 1;
+
+        html1 += `  <tr id=${product.id}>
+                    <td><img src="${image}" width="50" height="50"></td>
                     <td>${product.name}</td>
-                    <td>${product.currency +" "+ product.unitCost}</td>
-                    <td><input type="number" id="${product.unitCost + 1}" value="${product.count}" min="1" max="10" onclick="fruta(${product.unitCost},${product.currency})"></td>
-                    <td id="${product.unitCost}"">${product.currency + " " + product.unitCost}</td>
+                    <td>${product.currency + " " + cost}</td>
+                    <td><input type="number" id="${cost + 1}" value="${count}" min="1" max="10" onclick="fruta(${cost},${product.currency})"></td>
+                   
+                    <td id="${cost}"">${product.currency + " " + cost}</td>
+                    <td><button onClick="deleteItem(${product.id}, ${i})" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top"><i class="fa fa-trash"></i></button><td>
                     </tr>
-                    `
-                    
-                
-            } else {
-                html1+=
-               `<tr>
-               <td><img src="${product.images[2]}" width="50" height="50"></td>
-               <td>${product.name}</td>
-               <td>${product.currency +" "+ product.cost}</td>
-               <td><input type="number" id="${product.cost + 1}" value="1" min="1" max="10" onclick="fruta(${product.cost}, ${product.currency})"></td>
-               <td id="${product.cost}""> ${product.currency} ${product.cost}</td><br>
-               </tr>
-                `
-                
-            }
+                    `;
     }
     html1 += `  </tr>      
             </table>
-            <br>`
-    tableProducts.innerHTML += html1
+            <br>`;
+    tableProducts.innerHTML += html1;
 }
 
-function fruta(n,e){
+function fruta(n, e) {
+    let costF = document.getElementById(n);
+    let costI = document.getElementById(n + 1).value;
+    console.log(n);
+    costF.innerHTML = e + " " + costI * n;
+}
+
+function deleteItem(idItem, iItem){
+    document.getElementById(idItem).remove();
+    arrayBuy.splice(iItem, 1)
     
-    let costF = document.getElementById(n)
-    let costI = document.getElementById(n + 1).value
-    console.log(n)    
-    costF.innerHTML = e  + " " + costI * n
-
-    
-
 }
-
-function pushItems(){
-    arrayBuy.push(JSON.parse(localStorage.getItem("Obj")))   
-}
-
-
