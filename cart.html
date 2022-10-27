@@ -36,11 +36,13 @@
     </div>
   </nav>
   <main>
+    <br>
     <div class="container">
       <div id="extra">
         <div class="text-center" id="tableProducts">
           
         </div>
+      <h4 id="TestPrice">TestPrice</h4>
       <h4>Tipo de envio</h4>
           <input type="radio" id="html" name="fav_language" value="Premium">
           <label for="html">Premium</label><br>
@@ -48,14 +50,85 @@
           <label for="css">Standard</label><br>
           <input type="radio" id="javascript" name="fav_language" value="Express">
           <label for="javascript">Express</label><br>
-        <br>   
+        <br>  
+        <hr> 
       <h4>Direccion de envio</h4>
         <br>
           <input type="text" placeholder="Calle">
           <input type="text" placeholder="Numero"><br>
           <input type="text" placeholder="Esquina">
     </div>
-  </main>
+    <hr>
+    <div class="mt-4">
+      <h3>Costos</h3>
+      <div class="list-group-item list-group-item-action cursor-active">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8">SubTotal</div>
+          <div class="col-sm-4"  id="CostSubTotal" >USD</div>
+        </div>
+      </div>
+    </div>
+    <div class="list-group-item list-group-item-action cursor-active">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8">Costo Envio</div>
+          <div class="col-sm-4">USD</div>
+        </div>
+      </div>
+    </div>
+    <div class="list-group-item list-group-item-action cursor-active">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8">Total</div>
+          <div class="col-sm-4">USD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+<!-- Button trigger modal -->
+ <p>forma de pago</p>
+<href type="button" class="link-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Selecionar
+</href>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Forma de pago</h5>
+        <hr>
+        
+      </div>
+      <div class="modal-body">
+        <div class="radio">
+          <label><input type="radio" name="optradio">Tarjeta de credito</label>
+          <hr>
+        </div>
+        <br>
+        <div>
+        <input type="text" placeholder="Numero de tarjeta">
+        <input type="text" placeholder="Codigo seg">
+        <input type="text" placeholder="Vencimiento">
+        <br>
+        </div>
+        
+        <div class="radio">
+          <br>
+          <label><input type="radio" name="optradio">Transferencia bancaria</label>
+          <hr>
+        </div>
+        <input type="text" placeholder="Numero de cuenta">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+  </main>   
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">

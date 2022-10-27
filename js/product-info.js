@@ -11,15 +11,11 @@ let maxCount = undefined;
 
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCT_INFO_URL + localStorage.getItem("idProductInfo") + EXT_TYPE).then(function(resultObj){
-        // console.log(resultObj)
-        if (resultObj.status === "ok"){
-            
+        
+        if (resultObj.status === "ok"){   
             currentProductsArray = resultObj.data
             showProductsList()
             console.log(currentProductsArray)
-            // localStorage.setItem("Obj", JSON.stringify(currentProductsArray))
-            //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
-            // setTitleProduct(resultObj.data.catName)   
         }
     });
 });
@@ -27,21 +23,9 @@ document.addEventListener("DOMContentLoaded", function(e){
 
 function showProductsList(){
 
-// let imagesToAppend = "" ;
-// let ImagesOfProducts = currentProductsArray.images ;
-// for (let i = 0; i < ImagesOfProducts.length; i++) {
-//     let ImagesP = ImagesOfProducts[i];
-//     imagesToAppend += "<img src=" + ImagesP + ">" ; 
-// }
-// }
-
     let htmlContentToAppend = "";
     
-    
-    
         let product = currentProductsArray;
-
-        
 
             htmlContentToAppend += `
             <div class="product-info login-form">
@@ -155,42 +139,6 @@ function setStarts(n){
     
 };
 
-
-///////////////// /////////////////////////////
-//////////////////////////////////////////////
-// let currentProductsArray2 = [];
-// document.addEventListener("DOMContentLoaded", function(e){
-//     getJSONData(PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE).then(function(resultObj){
-//         if (resultObj.status === "ok"){          
-//             currentProductsArray2 = resultObj.data.products
-//             console.log(currentProductsArray2)
-//             showProductsList2()   
-//             showProductsList()
-//             sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
-//             setTitleProduct(resultObj.data.catName)
-//         }
-//     });
-// });
-
-// function showProductsList2(){
-
-//     let htmlContentToAppend2 = "";
-//     document.getElementById("sameProducts").innerHTML = htmlContentToAppend2
-//     for(let i = 0; i < currentProductsArray.relatedProducts.length; i++){
-//         let productSame = currentProductsArray.relatedProducts[i];
-//             htmlContentToAppend2 += `
-//             <div class="cursor-active product-info login-form" onClick={productClick(${productSame.id})}>
-//                 <div >
-//                     <div>
-//                         <img src="${productSame.image}" class="img-thumbnail" onClick={productClick(${productSame.id})}>
-//                     </div>                   
-//                 </div>
-//             </div>
-//             `
-//         document.getElementById("sameProducts").innerHTML = htmlContentToAppend2;
-//     }
-// };
-
 function showProductsList2(){
 
     let htmlContentToAppend2 = "";
@@ -229,18 +177,15 @@ document.addEventListener("DOMContentLoaded", function(e){
 
 logoutbtn.addEventListener("click", function(e){
     localStorage.removeItem("nameEmail")
+    document.getElementById("logout1").remove()
 });
 
 function setBtnBuy(){
     let btnComprar = document.getElementById("btnComprar")
     btnComprar.addEventListener("click", function(e){
-        
-        // let itemsCarrito = []
-        // itemsCarrito = currentProductsArray
-        // localStorage.setItem("Obj", JSON.stringify(currentProductsArray))
 
         pushToLocalCart(currentProductsArray)
-
+        
         window.location.href = "cart.html"
     })
 
