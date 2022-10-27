@@ -70,28 +70,39 @@ function showProductsCart() {
             <br>`;
     tableProducts.innerHTML += html1;
 }
-let contador = 0
+
+// html SubTotal
 let placePrice = document.getElementById("TestPrice")
+
+// btns shipments
+let premium = document.getElementById("Premium")
+let standard = document.getElementById("Standard")
+let express = document.getElementById("Express")
+
+// function final price
 function fruta(n, e) {
     let costF = document.getElementById(n);
     let costI = document.getElementById(n + 1).value;
 
-    // console.log(n, e);
     costF.innerHTML = e + " " + costI * n;
     
+    // for subtotal
     for (const item of arrayBuy){
-       
-        
-        let inputCount = document.getElementById(item.cost + 1).value
-        priceUnidadInput = (item.cost * inputCount) 
-        contador = priceUnidadInput
-        
+       let inputCount = document.getElementById(item.cost + 1).value
+       priceUnidadInput = (item.cost * inputCount) 
 
+       if (premium.checked) {
+            priceUnidadInput  =  priceUnidadInput * 1.15
         
-        placePrice.innerHTML = contador
-
+       } else if (standard.checked) {
+            priceUnidadInput =  priceUnidadInput * 1.7
         
-
+       } else if (express.checked) {
+            priceUnidadInput =  priceUnidadInput * 1.5
+        
+       }
+        
+        placePrice.innerHTML = priceUnidadInput
         console.log(item.cost, document.getElementById(item.cost + 1).value)
     }
     
@@ -104,13 +115,4 @@ function deleteItem(idItem, iItem){
     localStorage.setItem("cart_key", JSON.stringify(arrayBuy))   
 }
 
-// function test2() {
-    
-    
-//     for (const item of arrayBuy){
-        
-
-//         console.log(item.cost, costI)
-//     }
-// }
 
