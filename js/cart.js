@@ -69,17 +69,42 @@ function showProductsCart() {
             <hr>
             <br>`;
     tableProducts.innerHTML += html1;
+    priceUpdate()
 }
 
-// html SubTotal
-let placePrice = document.getElementById("TestPrice")
+// html, subTotal shipment total
+let placePrice = document.getElementById("finalPrice")
+let subtotalPlace = document.getElementById("subtotal2")
+let shipmentPlace = document.getElementById("shipment")
 
-// btns shipments
+
+
+// btns shipments, events
 let premium = document.getElementById("Premium")
 let standard = document.getElementById("Standard")
 let express = document.getElementById("Express")
 
-// function final price
+premium.addEventListener("change", function(e){
+            priceUpdate()
+        })
+standard.addEventListener("change", function(e){
+            priceUpdate()
+        })
+express.addEventListener("change", function(e){
+            priceUpdate()
+        })
+
+
+// ERROR idk
+// let ArrayInputs = { premium, standard , express}
+//     for(const btn of ArrayInputs){
+//         btn.addEventListener("onchange", function(e){
+//             priceUpdate()
+//         })
+//     }
+    
+
+//  function final price + price update
 function fruta(n, e) {
     let costF = document.getElementById(n);
     let costI = document.getElementById(n + 1).value;
@@ -87,32 +112,58 @@ function fruta(n, e) {
     costF.innerHTML = e + " " + costI * n;
     
     // for subtotal
-    for (const item of arrayBuy){
-       let inputCount = document.getElementById(item.cost + 1).value
-       priceUnidadInput = (item.cost * inputCount) 
-
-       if (premium.checked) {
-            priceUnidadInput  =  priceUnidadInput * 1.15
-        
-       } else if (standard.checked) {
-            priceUnidadInput =  priceUnidadInput * 1.7
-        
-       } else if (express.checked) {
-            priceUnidadInput =  priceUnidadInput * 1.5
-        
-       }
-        
-        placePrice.innerHTML = priceUnidadInput
-        console.log(item.cost, document.getElementById(item.cost + 1).value)
-    }
-    
+    priceUpdate()
+  
 }
+// function price unid*countUnid + shipment
+function priceUpdate() {
+    
+    for (const item of arrayBuy){
+        let inputCount = document.getElementById(item.cost + 1).value
+        priceUnidadInput = (item.cost * inputCount)
+        let shipmentPrice = 0
+        let subtotal = item.cost // uniprice
+        // shimpent
+        if (premium.checked) {
+             priceUnidadInput  =  priceUnidadInput * 1.15
+             shipmentPrice = priceUnidadInput * 0.15
+         
+        } else if (standard.checked) {
+             priceUnidadInput =  priceUnidadInput * 1.07
+             shipmentPrice = priceUnidadInput * 0.07
+         
+        } else if (express.checked) {
+             priceUnidadInput = priceUnidadInput * 1.05
+             shipmentPrice = priceUnidadInput * 0.05
+         
+        }
+        // currency 
+            if (item.currency = UYU) {
+                priceUnidadInput = priceUnidadInput / 42
+                shipmentPrice = shipmentPrice / 42
+                subtotal = item.cost / 42
 
+            }
+         subtotalPlace.innerHTML = `USD `+ Math.round(subtotal)
+         shipmentPlace.innerHTML = `USD `+ Math.round(shipmentPrice)
+         placePrice.innerHTML = `USD `+ Math.round(priceUnidadInput)
+         console.log(item.cost, document.getElementById(item.cost + 1).value)
+     }
+     
+
+}
+// delete cart items
 function deleteItem(idItem, iItem){
     document.getElementById(idItem).remove();
     arrayBuy.splice(iItem, 1)
     localStorage.removeItem("cart_key")
-    localStorage.setItem("cart_key", JSON.stringify(arrayBuy))   
+    localStorage.setItem("cart_key", JSON.stringify(arrayBuy))
+    if (arrayBuy = []) {
+        subtotalPlace.innerHTML = 0
+        shipmentPlace.innerHTML = 0
+        placePrice.innerHTML = 0
+
+    }
 }
 
 
