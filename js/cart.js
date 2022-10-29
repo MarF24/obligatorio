@@ -4,6 +4,7 @@ let extra = document.getElementById("extra");
 let USD = "USD";
 let UYU = "UYU";
 
+
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(CART_INFO_URL + 25801 + EXT_TYPE).then(function (resultObj) {
         if (resultObj.status === "ok") {
@@ -16,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             showProductsCart();
             
-            console.log(window.localStorage)
+            
         }
     });
 });
@@ -113,6 +114,8 @@ function fruta(n, e) {
     
     // for subtotal
     priceUpdate()
+    console.log(arrayBuy)
+    
   
 }
 // function price unid*countUnid + shipment
@@ -136,15 +139,14 @@ function priceUpdate() {
              priceUnidadInput = priceUnidadInput * 1.05
              shipmentPrice = priceUnidadInput * 0.05
          
-        }
-        // currency 
-            if (item.currency = UYU) {
-                priceUnidadInput = priceUnidadInput / 42
-                shipmentPrice = shipmentPrice / 42
-                subtotal = item.cost / 42
+        } else if (item.currency = UYU) {
+            priceUnidadInput = priceUnidadInput / 42
+            shipmentPrice = shipmentPrice / 42
+            subtotal = item.cost / 42
+            console.log(item.currency)
 
-            }
-         subtotalPlace.innerHTML = `USD `+ Math.round(subtotal)
+        }
+         subtotalPlace.innerHTML = `USD `+ Math.round(item.cost * inputCount)
          shipmentPlace.innerHTML = `USD `+ Math.round(shipmentPrice)
          placePrice.innerHTML = `USD `+ Math.round(priceUnidadInput)
          console.log(item.cost, document.getElementById(item.cost + 1).value)
@@ -165,5 +167,44 @@ function deleteItem(idItem, iItem){
 
     }
 }
+
+
+//disable btns
+
+function disableBtn(any) {
+     any.disabled = true;
+}
+
+function enableBtn(any) {
+    any.disabled = false;
+}
+
+let creditCardBtn = document.getElementById("creditCard")
+let bankTransfBtn = document.getElementById("bankTransf")
+let creditCardText = document.getElementById("craditCardText")
+let bankTransfText = document.getElementById("bankTransfText")
+let btnSubmit = document.getElementById("submit")
+
+
+creditCardBtn.addEventListener("click", function(e){
+    disableBtn(bankTransfText)
+    enableBtn(creditCardText)
+})
+
+bankTransfBtn.addEventListener("click", function(e){
+    disableBtn(creditCardText)
+    enableBtn(bankTransfText)
+})
+
+// btnSubmit.addEventListener("click", function(e){
+//     if (!(creditCardBtn.checked) && !(bankTransfBtn.checked)) {
+        
+//         e.preventDefault()
+        
+//     }
+     
+    
+// })
+
 
 

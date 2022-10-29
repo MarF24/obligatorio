@@ -143,7 +143,7 @@ function showProductsList2(){
 
     let htmlContentToAppend2 = "";
     document.getElementById("sameProducts").innerHTML = htmlContentToAppend2
-    console.log(currentProductsArray.relatedProducts)
+    
     for(let i = 0; i < currentProductsArray.relatedProducts.length; i++){
         let productSame = currentProductsArray.relatedProducts[i];
             
@@ -160,7 +160,7 @@ function showProductsList2(){
             }
         document.getElementById("sameProducts").innerHTML = htmlContentToAppend2;
     }
-    console.log(document.getElementById("carouselExampleControls"))
+    
 };
 
 function productClick(id) {
