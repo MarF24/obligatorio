@@ -150,3 +150,6 @@ document.addEventListener("DOMContentLoaded", function(e){
 logoutbtn.addEventListener("click", function(e){
     localStorage.removeItem("nameEmail")
 });
+if (!localStorage.getItem("nameEmail")){
+    location.href ="index.html";
+   }

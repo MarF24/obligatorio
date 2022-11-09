@@ -6,7 +6,7 @@ let miBD = {
     "lastName": "",
     "lastName2": "",
     "phone": "",
-    "email": ""
+    "email": localStorage.getItem("nameEmail") ?? "error login",
 };
 if (localStorage.getItem('miBD')) {
     miBD = JSON.parse(localStorage.getItem('miBD'));
@@ -15,6 +15,8 @@ console.log(miBD)
 
 function actualizarDBLS() {
     localStorage.setItem('miBD', JSON.stringify(miBD));
+    localStorage.setItem("nameEmail", miBD.email);
+    emailTest.innerHTML = localStorage.getItem("nameEmail");
 }
 
 document.addEventListener("DOMContentLoaded", function(e){
@@ -74,7 +76,7 @@ function showPerfil(){
       </div>
       <div class="col-6">
         <label for="email" class="form-label">Email*</label>
-        <input type="email" class="form-control" id="email" value= "${miBD.email}" required >
+        <input type="email" class="form-control" id="email" value= "${localStorage.getItem("nameEmail")}" required >
         <div class="valid-feedback">
           Es correcto
         </div>
@@ -154,7 +156,7 @@ function UpdateDatabase(){
         "phone": phone.value ?? "",
         "email": email.value ?? "",
     };
-    console.log(miBD)
+    console.log(miBD, miBD.email)
     actualizarDBLS()
     // showPerfil()
 
@@ -168,6 +170,18 @@ function addEventAlert(){
 
 }
 
+let emailTest = document.getElementById("nickName") 
+let logoutbtn = document.getElementById("logout")
+document.addEventListener("DOMContentLoaded", function(e){
+    emailTest.innerHTML = localStorage.getItem("nameEmail")
+});
+logoutbtn.addEventListener("click", function(e){
+    localStorage.removeItem("nameEmail")
+});
+
+ if (!localStorage.getItem("nameEmail")){
+  location.href ="index.html";
+ }
 
 
 

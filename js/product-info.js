@@ -201,4 +201,7 @@ function pushToLocalCart(item) {
     localStorage.setItem("cart_key", JSON.stringify(cart))
 }
 
+if (!localStorage.getItem("nameEmail")){
+    location.href ="index.html";
+   }
 

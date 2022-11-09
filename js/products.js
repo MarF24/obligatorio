@@ -264,6 +264,9 @@ function productClick(id) {
     window.location.href = "product-info.html"
 };
 
+if (!localStorage.getItem("nameEmail")){
+    location.href ="index.html";
+   }
 
 
 
