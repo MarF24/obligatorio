@@ -30,8 +30,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 
 function showPerfil(){
 
-    htmlToAppend = `<br>
-    <h3>Perfil</h5>
+    htmlToAppend = `
     <hr>
     <form class="row g-3 m-3 needs-validation" novalidate>
       <div class="col-6">
@@ -182,6 +181,58 @@ logoutbtn.addEventListener("click", function(e){
  if (!localStorage.getItem("nameEmail")){
   location.href ="index.html";
  }
+
+ const inputEl = document.getElementById('file-input-element');
+// Gets input element
+
+inputEl.addEventListener('change' , () => {
+// Listens for new input file
+
+    const file = inputEl.files[0]; 
+    // Gets file from input element
+
+    const fr = new FileReader();
+    // Creates new FileReader object
+
+    fr.readAsDataURL(file);
+    // Set FileReader to output data as URL string
+
+    fr.addEventListener('load', () => {
+        if (document.getElementById("imageD").children.length > 0){
+          document.getElementById("imageD").innerHTML = ""
+        }
+
+        // Waits for file reading to be complete
+        const url = fr.result
+        // Save result
+        
+        let img = new Image();
+        img.src = url;
+        document.getElementById("imageD").appendChild(img)
+        localStorage.setItem("image", url)
+        console.log(document.getElementById("imageD"))
+    })
+
+})
+
+
+if (localStorage.getItem('image')){
+  const url = localStorage.getItem('image');
+  const img = new Image();
+  img.src = url;
+  document.getElementById("imageD").appendChild(img);
+} else { 
+  var img = document.createElement("img");
+  img.src = "img/img_perfil.png";
+  var src = document.getElementById("imageD");
+  src.appendChild(img);
+}
+
+
+
+
+
+
 
 
 
